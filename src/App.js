@@ -56,8 +56,7 @@ const App = () => {
           >
             {options.map((option, _index) => (
               <option key={_index} value={option.value}>
-                {" "}
-                {option.select}{" "}
+                {option.select}
               </option>
             ))}
           </select>
