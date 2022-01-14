@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.questionBox {
+  background-color: antiquewhite;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.questionButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+.questionButton {
+  display: flex;
+  flex-direction: column;
+}

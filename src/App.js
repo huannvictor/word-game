@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
-  const [chosenLevel, setChosenLevel] = useState(null);
+  const [chosenLevel, setChosenLevel] = useState("2");
+  const [words, setWords] = useState(null);
+  const [correctAnswers, setCorrectAnswers] = useState([]);
 
   const getRandomWords = () => {
     const options = {
@@ -19,15 +21,32 @@ const App = () => {
       .request(options)
       .then(response => {
         console.log(response.data);
+        setWords(response.data);
       })
       .catch(error => {
         console.error(error);
       });
   };
 
-  console.log(chosenLevel);
+  console.log(words && words.quizlist);
+
+  useEffect(() => {
+    if (chosenLevel) getRandomWords();
+  }, [chosenLevel]);
+
+  const checkAnswer = (option, optionIndex, correctAnswer) => {
+    console.log(optionIndex, correctAnswer);
+    if (optionIndex == correctAnswer) {
+      setCorrectAnswers([...correctAnswers, option]);
+    }
+  };
+  console.log(correctAnswers);
 
   const options = [
+    {
+      select: "Select a level",
+      value: null,
+    },
     {
       select: "level 1",
       value: 1,
@@ -63,9 +82,30 @@ const App = () => {
         </div>
       )}
 
-      {chosenLevel && (
+      {chosenLevel && words && (
         <div className="questionArea">
           <h1>Welcome to level {chosenLevel}</h1>
+          {words.quizlist.map((question, questionIndex) => (
+            <div className="questionBox" key={questionIndex}>
+              {question.quiz.map((tip, _index) => (
+                <p key={_index}>{tip}</p>
+              ))}
+              <div className="questionButtons">
+                {question.option.map((option, optionIndex) => (
+                  <div className="questionButton" key={optionIndex}>
+                    <button
+                      onClick={() =>
+                        checkAnswer(option, optionIndex + 1, question.correct)
+                      }
+                    >
+                      {option}
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <p>{question.correct}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>
