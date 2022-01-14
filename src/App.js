@@ -27,21 +27,48 @@ const App = () => {
 
   console.log(chosenLevel);
 
+  const options = [
+    {
+      select: "level 1",
+      value: 1,
+    },
+    {
+      select: "level 2",
+      value: 2,
+    },
+    {
+      select: "level 3",
+      value: 3,
+    },
+  ];
+
   return (
     <div className="App">
-      <div className="levelSelector">
-        <h1>Word Association</h1>
-        <select
-          name="levels"
-          id="levels"
-          value={chosenLevel}
-          onChange={e => setChosenLevel(e.target.value)}
-        >
-          <option value="1">Level 1</option>
-          <option value="2">Level 2</option>
-          <option value="3">Level 3</option>
-        </select>
-      </div>
+      {!chosenLevel && (
+        <div className="levelSelector">
+          <h1>Word Association</h1>
+          <p>Select your level to start</p>
+          <select
+            name="levels"
+            id="levels"
+            value={chosenLevel}
+            onChange={e => setChosenLevel(e.target.value)}
+          >
+            {options.map((option, _index) => (
+              <option key={_index} value={option.value}>
+                {" "}
+                {option.select}{" "}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {chosenLevel && (
+        <div className="questionArea">
+          <h1>Welcome to level {chosenLevel}</h1>
+        </div>
+      )}
     </div>
   );
 };
