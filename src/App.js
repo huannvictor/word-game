@@ -5,6 +5,7 @@ const App = () => {
   const [chosenLevel, setChosenLevel] = useState("2");
   const [words, setWords] = useState(null);
   const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [clicked, setClicked] = useState([]);
 
   const getRandomWords = () => {
     const options = {
@@ -39,8 +40,12 @@ const App = () => {
     if (optionIndex == correctAnswer) {
       setCorrectAnswers([...correctAnswers, option]);
     }
+
+    setClicked([...clicked, option]);
   };
-  console.log(correctAnswers);
+
+  console.log("correctAnswers", correctAnswers);
+  console.log("clicked", clicked);
 
   const options = [
     {
@@ -94,15 +99,18 @@ const App = () => {
                 {question.option.map((option, optionIndex) => (
                   <div className="questionButton" key={optionIndex}>
                     <button
+                      disabled={clicked.includes(option)}
                       onClick={() =>
                         checkAnswer(option, optionIndex + 1, question.correct)
                       }
                     >
                       {option}
                     </button>
+                    {correctAnswers.includes(option) && <p>Correct!</p>}
                   </div>
                 ))}
               </div>
+
               <p>{question.correct}</p>
             </div>
           ))}
