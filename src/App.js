@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import levels from "./components/Levels";
 
 const App = () => {
-  const [chosenLevel, setChosenLevel] = useState(null);
+  let [chosenLevel, setChosenLevel] = useState(null);
   const [words, setWords] = useState(null);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [clicked, setClicked] = useState([]);
@@ -20,7 +20,6 @@ const App = () => {
     axios
       .request(options)
       .then(response => {
-        console.log(response.data);
         setWords(response.data);
       })
       .catch(error => {
@@ -28,10 +27,9 @@ const App = () => {
       });
   };
 
-  console.log(words && words.quizlist);
-
   useEffect(() => {
     if (chosenLevel) getRandomWords();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chosenLevel]);
 
   const checkAnswer = (option, optionIndex, correctAnswer) => {
@@ -45,9 +43,6 @@ const App = () => {
 
     setClicked([...clicked, option]);
   };
-
-  console.log("correctAnswers", correctAnswers);
-  console.log("clicked", clicked);
 
   return (
     <div className="app">
@@ -99,7 +94,13 @@ const App = () => {
             ))}
           </div>
 
-          <button onClick={() => setChosenLevel(null)}>Go Back</button>
+          <button onClick={() => setChosenLevel(parseInt(chosenLevel) - 1)}>
+            Prev Level
+          </button>
+          <button onClick={() => setChosenLevel(null)}>Restart</button>
+          <button onClick={() => setChosenLevel(parseInt(chosenLevel) + 1)}>
+            Next Level
+          </button>
         </div>
       )}
     </div>
