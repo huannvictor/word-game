@@ -2,11 +2,11 @@
 
 # Sobre o projeto: Word Association Game
 
-Dashboard feita seguindo o tutorial do canal [Code with Ania Kubów](https://youtu.be/WDwhJNbWka0?t=8422) onde consumi informações de uma API do marketplace [RapidApi.com](http://rapidapi.com).
+Game feito seguindo o tutorial do canal [Code with Ania Kubów](https://youtu.be/WDwhJNbWka0?t=8422) onde consumi informações da API abaixo descrita dentro do marketplace [RapidApi.com](http://rapidapi.com):
 - Word Quiz: Teste de vocabulário com termos específicos de exames como SAT, GMAT, etc _(em inglês)_.  
 [link aqui](https://rapidapi.com/twinword/api/word-quiz/)  
 
-Nessa word game simples podemos associar termos, fazendo uma pontuação em até 10 níveis de dificuldade.
+Nesse word game simples podemos associar termos, contabilizando uma pontuação em até 10 níveis de dificuldade.
 
 ## Tecnologias
 [![ReactJs](https://img.shields.io/badge/-React-9cf)](https://pt-br.reactjs.org/)  
