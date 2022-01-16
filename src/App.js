@@ -2,10 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  const [chosenLevel, setChosenLevel] = useState("2");
+  const [chosenLevel, setChosenLevel] = useState(null);
   const [words, setWords] = useState(null);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [clicked, setClicked] = useState([]);
+  const [score, setScore] = useState(0);
 
   const getRandomWords = () => {
     const options = {
@@ -14,7 +15,7 @@ const App = () => {
       params: { level: chosenLevel, area: "sat" },
       headers: {
         "x-rapidapi-host": "twinword-word-association-quiz.p.rapidapi.com",
-        "x-rapidapi-key": "4f44b2b4famsh9851d3135c14023p1d68aajsn8515efd61176",
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
       },
     };
 
@@ -37,8 +38,11 @@ const App = () => {
 
   const checkAnswer = (option, optionIndex, correctAnswer) => {
     console.log(optionIndex, correctAnswer);
-    if (optionIndex == correctAnswer) {
+    if (optionIndex === correctAnswer) {
       setCorrectAnswers([...correctAnswers, option]);
+      setScore(score => score + 1);
+    } else {
+      setScore(score - 1);
     }
 
     setClicked([...clicked, option]);
@@ -53,21 +57,49 @@ const App = () => {
       value: null,
     },
     {
-      select: "level 1",
+      select: "level 01",
       value: 1,
     },
     {
-      select: "level 2",
+      select: "level 02",
       value: 2,
     },
     {
-      select: "level 3",
+      select: "level 03",
       value: 3,
+    },
+    {
+      select: "level 04",
+      value: 4,
+    },
+    {
+      select: "level 05",
+      value: 5,
+    },
+    {
+      select: "level 06",
+      value: 6,
+    },
+    {
+      select: "level 07",
+      value: 7,
+    },
+    {
+      select: "level 08",
+      value: 8,
+    },
+    {
+      select: "level 09",
+      value: 9,
+    },
+    {
+      select: "level 10",
+      value: 10,
     },
   ];
 
   return (
-    <div className="App">
+    <div className="app">
       {!chosenLevel && (
         <div className="levelSelector">
           <h1>Word Association</h1>
@@ -90,30 +122,33 @@ const App = () => {
       {chosenLevel && words && (
         <div className="questionArea">
           <h1>Welcome to level {chosenLevel}</h1>
-          {words.quizlist.map((question, questionIndex) => (
-            <div className="questionBox" key={questionIndex}>
-              {question.quiz.map((tip, _index) => (
-                <p key={_index}>{tip}</p>
-              ))}
-              <div className="questionButtons">
-                {question.option.map((option, optionIndex) => (
-                  <div className="questionButton" key={optionIndex}>
-                    <button
-                      disabled={clicked.includes(option)}
-                      onClick={() =>
-                        checkAnswer(option, optionIndex + 1, question.correct)
-                      }
-                    >
-                      {option}
-                    </button>
-                    {correctAnswers.includes(option) && <p>Correct!</p>}
-                  </div>
+          <h3>Your Score is: {score}</h3>
+          <div className="questions">
+            {words.quizlist.map((question, _questionIndex) => (
+              <div className="questionBox" key={_questionIndex}>
+                {question.quiz.map((tip, _index) => (
+                  <p key={_index}>{tip}</p>
                 ))}
+                <div className="questionButtons">
+                  {question.option.map((option, optionIndex) => (
+                    <div className="questionButton" key={optionIndex}>
+                      <button
+                        disabled={clicked.includes(option)}
+                        onClick={() =>
+                          checkAnswer(option, optionIndex + 1, question.correct)
+                        }
+                      >
+                        {option}
+                      </button>
+                      {correctAnswers.includes(option) && <p>Correct!</p>}
+                    </div>
+                  ))}
+                </div>
               </div>
+            ))}
+          </div>
 
-              <p>{question.correct}</p>
-            </div>
-          ))}
+          <button onClick={() => setChosenLevel(null)}>Go Back</button>
         </div>
       )}
     </div>
