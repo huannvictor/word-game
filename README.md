@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Word Association Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Sobre o projeto: Word Association Game
 
-## Available Scripts
+Dashboard feita seguindo o tutorial do canal [Code with Ania Kubów](https://youtu.be/WDwhJNbWka0?t=8422) onde consumi informações de uma API do marketplace [RapidApi.com](http://rapidapi.com).
+- Word Quiz: Teste de vocabulário com termos específicos de exames como SAT, GMAT, etc _(em inglês)_.  
+[link aqui](https://rapidapi.com/twinword/api/word-quiz/)  
 
-In the project directory, you can run:
+Nessa word game simples podemos associar termos, fazendo uma pontuação em até 10 níveis de dificuldade.
 
-### `npm start`
+## Tecnologias
+[![ReactJs](https://img.shields.io/badge/-React-9cf)](https://pt-br.reactjs.org/)  
+[![NodeJs](https://img.shields.io/badge/-NodeJs-green)](https://nodejs.org/en/)  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Bibliotecas & Utilitários
+  [![Axios](https://img.shields.io/badge/Cient_HTTP-Axios-blue)](https://axios-http.com/)  
+  [![Express](https://img.shields.io/badge/Framework-Express-blue)](https://expressjs.com/)  
+  [![Express](https://img.shields.io/badge/Cross_Origin_Request-CORS-blue)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)  
+  [![Express](https://img.shields.io/badge/module-dotenv-blue)](https://www.npmjs.com/package/dotenv)  
+  [![Express](https://img.shields.io/badge/module-nodemon-blue)](https://www.npmjs.com/package/nodemon)
 
-### `npm test`
+# Como executar
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## `npm i`
+- instale todas as dependências necessárias  
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## arquivo `.env`
+- crie um arquivo `.env` no `root` do seu projeto e nele insira o seguinte código sem {}:
+```bash
+REACT_APP_RAPID_API_KEY={sua_chave_api_aqui}
+```
+❗ _sem essas informação seu código não conseguirá acessar as informações da API_  
+🔗 _você encontra sua chave assim que subscrever em alguma API, dentro marketplace [RapidApi.com](http://rapidapi.com)_  
+💡 _tutorial (em inglês) de como conseguir sua rapidApiKey: [aqui](https://youtu.be/WDwhJNbWka0)_
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## execute: `npm run start:frontend`
+- comando roda o aplicativo no mode de desenvolvimento, acesse: http://localhost:3000 no navegador.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## execute: `npm run start:backend`
+ - comando inicia o servidor em http://localhost:8000
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Layout Final
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![screenshot: escolha seu nível](.public/assets/../../public/assets/screenshot1.png)
+![screenshot: dentro do nível](public/assets/screenshot2.png)
