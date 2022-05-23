@@ -13,12 +13,8 @@ const App = () => {
   const getRandomWords = () => {
     const options = {
       method: "GET",
-      url: "https://twinword-word-association-quiz.p.rapidapi.com/type1/",
+      url: "https://localhost:8000/results",
       params: { level: chosenLevel, area: "sat" },
-      headers: {
-        'X-RapidAPI-Host': 'twinword-word-association-quiz.p.rapidapi.com',
-        'X-RapidAPI-Key': '4f44b2b4famsh9851d3135c14023p1d68aajsn8515efd61176'
-        };
 
     axios
       .request(options)
