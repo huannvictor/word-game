@@ -13,7 +13,7 @@ const App = () => {
   const getRandomWords = () => {
     const options = {
       method: "GET",
-      url: "http://localhost:8000/results",
+      url: "https://word-game-neon.vercel.app/results",
       params: { level: chosenLevel, area: "sat" },
     };
 
