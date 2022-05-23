@@ -13,7 +13,7 @@ const App = () => {
   const getRandomWords = () => {
     const options = {
       method: "GET",
-      url: "https://word-game-neon.vercel.app/results",
+      url: "https://twinword-word-association-quiz.p.rapidapi.com/type1/",
       params: { level: chosenLevel, area: "sat" },
     };
 
